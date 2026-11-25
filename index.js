@@ -568,7 +568,7 @@ async function updateERLCStatus() {
             `# ${CONFIG.serverName} | Live Server Status`,
             `**Server:** ${server.Name || CONFIG.serverName}`,
             `**Players:** ${server.CurrentPlayers ?? 0}/${server.MaxPlayers ?? 0}`,
-            `**Updated:** ${timestamp()}`,
+            `**Updated:** <t:${Math.floor(Date.now() / 1000)}:R>`
             `-# Live information provided by the ER:LC API`,
         ];
 
@@ -1438,8 +1438,8 @@ client.once("ready", async () => {
         await updateERLCStatus();
 
         setInterval(() => {
-            updateERLCStatus().catch(console.error);
-        }, CONFIG.erlcRefresh * 1000);
+    updateERLCStatus().catch(console.error);
+}, 10000);
     }
 
     console.log("Fairview Roleplay Bot is ready.");
@@ -1894,3 +1894,4 @@ process.on("uncaughtException", error => {
 // ======================================================
 
 client.login(CONFIG.token);
+
